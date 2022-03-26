@@ -1,7 +1,12 @@
 import discord
 client = discord.Client(intents=discord.Intents.all())
-from dotenv import dotenv.dotenv_values()
-
+from dotenv import dotenv_values as dot
+token = ''
+try:
+	token = dot()['token'] if token =='' 
+except Exception as e:
+	print('Token isn\'t defined, set it up in the script, or create an .env file with TOKEN value set.')
+	quit(1)
 import requests
 
 
@@ -58,6 +63,6 @@ async def on_message(message: discord.Message):
 
 
 
-token ='e'
+
 
 client.run(token,bot=(not selfbot))
