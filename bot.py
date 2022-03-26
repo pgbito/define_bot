@@ -1,7 +1,15 @@
 import discord
 client = discord.Client(intents=discord.Intents.all())
 from dotenv import dotenv_values as dot
+
+
+
+#Config
+
 token = ''
+prefix = '>'
+
+
 try:
 	token = dot()['token'] if token =='' 
 except Exception as e:
@@ -41,7 +49,7 @@ async def on_message(message: discord.Message):
      async for fixed_message in message.channel.history(limit=1):
         message=fixed_message
 
-    if message.content.startswith('>define'):
+    if message.content.startswith('{0}define'.format(prefix)):
         response = requests.request("GET", url, headers=headers, params={"term": ' '.join(message.content.split(' ')[1:])})
         if response.ok:
             if selfbot:
